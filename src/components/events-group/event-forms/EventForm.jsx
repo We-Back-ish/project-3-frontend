@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import {UserContext} from "../../../App";
 import axios from "axios";
 // possibly remove because of differt methods
-import DateTimePicker from "react-datetime-picker";
 import { useHistory } from "react-router-dom";
 // import { Redirect } from "react-router";
 
@@ -33,6 +32,7 @@ let history = useHistory();
 
   // going to implment std html date method possibly remove this
   const [date, setDate] = useState(new Date());
+  
 
   const handleChange = (event) => {
     setEventForm({ ...eventForm, [event.target.id]: event.target.value });
@@ -42,7 +42,7 @@ let history = useHistory();
     event.preventDefault();
     const url = "http://localhost:4000/event/add";
     axios
-    .post(url, { ...eventForm, dateAndTime: date })
+    .post(url, { ...eventForm, addedBy: userData.user.userName})
     .then((res) => {
         history.push(`/event/${res.data._id}`);
         // console.log(eventForm.location);
@@ -90,7 +90,7 @@ let history = useHistory();
             <option value="Music">Music</option>
           </select>
           <br/>
-          <label htmlFor="City">City:</label>
+          <label htmlFor="city">City:</label>
           <select
             type="text"
             id="city"
@@ -98,10 +98,10 @@ let history = useHistory();
             value={eventForm.city}
           >
             <option placeholder="Choose Your City"></option>
-            <option value="orlando">Orlando</option>
-            <option value="dallas">Dallas</option>
-            <option value="kansascity">Kansas City</option>
-            <option value="chicago">Chicago</option>
+            <option value="orlando">Orlando, FL</option>
+            <option value="dallas">Dallas, TX</option>
+            <option value="kansascity">Kansas City, MO</option>
+            <option value="chicago">Chicago, IL</option>
           </select>
           <br/>
           <label htmlFor="date">Date/Time:</label>

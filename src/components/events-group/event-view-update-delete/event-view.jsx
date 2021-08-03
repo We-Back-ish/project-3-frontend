@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const EventView =  (props) => {
-  console.log(props);
+  //console.log(props);
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -36,7 +36,6 @@ const EventView =  (props) => {
       <h2>Host:{event.addedBy}</h2>
       <h2>Type:{event.type}</h2>
       <h3>City:{event.city}</h3>
-      <h3>State:{event.state}</h3>
       <h3>Event Date:{event.date}</h3>
       <h3>Online:{event.online}</h3>
       <h3>In Person:{event.inPerson}</h3>
