@@ -20,8 +20,8 @@ const UpdateMessage = ({messages, post, setMessages}) => {
         })
         .then(res => res.json())
         .then(setMessages(messages.map(m => {
-          if (post.message === m.message) {
-            m.message = form.message
+          if (post.messageBody === m.messageBody) {
+            m.messageBody = form.messageBody
           }
           return m
         })))
@@ -37,8 +37,8 @@ const UpdateMessage = ({messages, post, setMessages}) => {
         <div>
             <form className="form" onSubmit={handleSubmit} >
                 <div className="form-group">
-                <label htmlFor="message">Update: </label>
-                <textarea id="message" cols="30" rows="5" value={form.message} onChange={handleChange}></textarea>
+                <label htmlFor="messageBody">Update: </label>
+                <textarea id="messageBody" cols="30" rows="5" value={form.messageBody} onChange={handleChange}></textarea>
                 </div>
                 <div className="form-group">
                     <input type="submit" value="Update" />

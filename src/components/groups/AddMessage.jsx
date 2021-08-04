@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
 
-const AddMessage = ({messages, setMessages}) => {
-    const initialState = {
-        message: ''
+const AddMessage = ({messages, setMessages, match}) => {
+  let pageInterest = match.params.interest
+  const initialState = {
+        messageBody: '',
+        interest: pageInterest
     }
 
     const [form, setForm] = useState(initialState)
@@ -19,6 +21,7 @@ const AddMessage = ({messages, setMessages}) => {
         })
         .then(res => res.json())
         .then(message => setMessages([...messages, message]))
+        
         setForm(initialState)
       }
     
@@ -31,8 +34,8 @@ const AddMessage = ({messages, setMessages}) => {
             <h1>Add Message Here</h1>
             <form onSubmit={handleSubmit} className="form">
                 <div className="form-group">
-                <label htmlFor="message">Post: </label>
-                <textarea id="message" cols="30" rows="10" placeholder="Add Message Here" onChange={handleChange}></textarea>
+                <label htmlFor="messageBody">Post: </label>
+                <textarea id="messageBody" cols="30" rows="10" placeholder="Add Message Here" onChange={handleChange}></textarea>
                 </div>
                 <div className="form-group">
                     <input type="submit" value="Add" />
